@@ -1,0 +1,60 @@
+@model IEnumerable<StudentManagementSystem.Models.Course>
+
+@{
+    ViewData["Title"] = "Courses";
+}
+
+<h2>Courses</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        Add New Course
+    </a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Course Code</th>
+            <th>CourseName</th>
+            <th>Department</th>
+            <th>Lecturer</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @if (Model.Any())
+        {
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td>@course.CourseCode</td>
+                    <td>@course.CourseName</td>
+                    <td>@course.DepartmentId</td>
+                    <td>@course.LecturerId</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@course.CourseId" class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete" asp-route-id="@course.CourseId" class="btn btn-danger btn-sm">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" class="text-center">
+                    No courses found.
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

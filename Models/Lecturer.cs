@@ -7,6 +7,12 @@ namespace StudentManagementSystem.Models
 {
     public class Lecturer
     {
-        
+        public int LecturerId { get; set; }
+        public string FirstName { get; set; } = string.Empty;
+
+        public string LastName { get; set; } = string.Empty;
+
+        public string Email { get; set; } = string.Empty;
+        public int departmentId { get; set; }
     }
 }

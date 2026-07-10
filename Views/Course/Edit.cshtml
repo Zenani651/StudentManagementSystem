@@ -1,0 +1,50 @@
+@model StudentManagementSystem.Models.Course
+
+@{
+    ViewData["Title"] = "Edit Course";
+}
+
+<h2>Edit Course</h2>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="CourseId" />
+
+    <div class="mb-3">
+        <label asp-for="CourseCode" class="form-label">Course Code</label>
+        <input asp-for="CourseCode" class="form-control" />
+        <span asp-validation-for="CourseCode" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CourseName" class="form-label">Course Name</label>
+        <input asp-for="CourseName" class="form-control" />
+        <span asp-validation-for="CourseName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DepartmentId" class="form-label">Department</label>
+        <input asp-for="DepartmentId" class="form-control" />
+        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="LecturerId" class="form-label">Lecturer</label>
+        <input asp-for="LecturerId" class="form-control" />
+        <span asp-validation-for="LecturerId" class="text-danger"></span>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">
+        Save Changes
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
