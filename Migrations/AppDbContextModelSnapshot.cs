@@ -63,20 +63,24 @@ namespace StudentManagementSystem.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("AcademicYear")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("CourseId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("EnrollmentDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Grade")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("StudentId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("semester")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.HasKey("EnrollmentId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Enrollments");
                 });
@@ -160,6 +164,35 @@ namespace StudentManagementSystem.Migrations
                     b.HasKey("StudentId");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("StudentManagementSystem.Models.Enrollment", b =>
+                {
+                    b.HasOne("StudentManagementSystem.Models.Course", "Course")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagementSystem.Models.Student", "Student")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("StudentManagementSystem.Models.Course", b =>
+                {
+                    b.Navigation("Enrollments");
+                });
+
+            modelBuilder.Entity("StudentManagementSystem.Models.Student", b =>
+                {
+                    b.Navigation("Enrollments");
                 });
 #pragma warning restore 612, 618
         }

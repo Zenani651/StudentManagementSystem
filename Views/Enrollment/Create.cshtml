@@ -1,0 +1,51 @@
+@model StudentManagementSystem.Models.Enrollment
+
+@{
+    ViewData["Title"] = "Enroll Student";
+}
+
+<h2>Enroll Student</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label asp-for="StudentId" class="form-label"></label>
+        <select asp-for="StudentId" asp-items="ViewBag.Students" class="form-control">
+            <option value="">-- Select Student --</option>
+        </select>
+        <span asp-validation-for="StudentId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CourseId" class="form-label"></label>
+        <select asp-for="CourseId" asp-items="ViewBag.Courses" class="form-control">
+            <option value="">-- Select Course --</option>
+        </select>
+        <span asp-validation-for="CourseId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="EnrollmentDate" class="form-label"></label>
+        <input asp-for="EnrollmentDate" class="form-control" />
+        <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Grade" class="form-label"></label>
+        <input asp-for="Grade" class="form-control" />
+        <span asp-validation-for="Grade" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Save Enrollment
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,65 @@
+@model IEnumerable<StudentManagementSystem.Models.Enrollment>
+
+@{
+    ViewData["Title"] = "Enrollments";
+}
+
+<h2>Enrollments</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        Enroll Student
+    </a>
+</p>
+
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+        <tr>
+            <th>Student</th>
+            <th>Course</th>
+            <th>Enrollment Date</th>
+            <th>Grade</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @if (Model.Any())
+        {
+            foreach (var enrollment in Model)
+            {
+                <tr>
+                    <td>@enrollment.Student?.FirstName @enrollment.Student?.LastName</td>
+
+                    <td>@enrollment.Course?.CourseName</td>
+
+                    <td>@enrollment.EnrollmentDate.ToShortDateString()</td>
+
+                    <td>@enrollment.Grade</td>
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@enrollment.EnrollmentId" class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete" asp-route-id="@enrollment.EnrollmentId" class="btn btn-danger btn-sm">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">
+                    No enrollments found.
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

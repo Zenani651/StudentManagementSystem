@@ -27,5 +27,9 @@ namespace StudentManagementSystem.Models
         public DateTime DateOfBirth { get; set; }
 
         public bool IsActive { get; set; } = true;
+
+        //navigation property for enrollments
+        public ICollection<Enrollment> Enrollments { get; set; }
+         = new List<Enrollment>();
     }
 }
