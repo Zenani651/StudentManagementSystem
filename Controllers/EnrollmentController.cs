@@ -40,8 +40,19 @@ namespace StudentManagementSystem.Controllers
 
         // Save Enrollment
         [HttpPost]
+        [HttpPost]
         public IActionResult Create(Enrollment enrollment)
         {
+            // Check if the student is already enrolled in the selected course
+            bool exists = _context.Enrollments.Any(e =>
+                e.StudentId == enrollment.StudentId &&
+                e.CourseId == enrollment.CourseId);
+
+            if (exists)
+            {
+                ModelState.AddModelError("", "This student is already enrolled in this course.");
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Enrollments.Add(enrollment);
@@ -50,6 +61,7 @@ namespace StudentManagementSystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            // Reload dropdown lists if validation fails
             ViewBag.Students = new SelectList(_context.Students, "StudentId", "FirstName");
             ViewBag.Courses = new SelectList(_context.Courses, "CourseId", "CourseName");
 

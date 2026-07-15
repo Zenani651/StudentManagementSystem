@@ -9,13 +9,15 @@ namespace StudentManagementSystem.Models
     public class Course
     {
         public int CourseId { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Please enter the course code.")]
         public string CourseCode { get; set; } = string.Empty;
-        [Required]
+        [Required(ErrorMessage = "Please enter the course name.")]
         public string CourseName { get; set; } = string.Empty;
-        [Required]
+        [Required(ErrorMessage = "Please select the department.")]
+
         public int DepartmentId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please select the lecturer.")]
         public int LecturerId { get; set; }
 
         //navigation property for enrollments

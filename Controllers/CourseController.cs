@@ -20,11 +20,20 @@ namespace StudentManagementSystem.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string search)
         {
-            var courses = _context.Courses.ToList();
+            var courses = _context.Courses.AsQueryable();
 
-            return View(courses);
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                search = search.Trim().ToLower();
+
+                courses = courses.Where(c =>
+                    c.CourseCode.ToLower().Contains(search) ||
+                    c.CourseName.ToLower().Contains(search));
+            }
+
+            return View(courses.ToList());
         }
 
         public IActionResult Create()

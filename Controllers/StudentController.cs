@@ -21,13 +21,21 @@ namespace StudentManagementSystem.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string search)
         {
-            var students = _context.Students
-                                   .Where(s => s.IsActive)
-                                   .ToList();
+            var students = _context.Students.Where(s => s.IsActive);
 
-            return View(students);
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                search = search.Trim().ToLower();
+
+                students = students.Where(s =>
+                    s.FirstName.ToLower().Contains(search) ||
+                    s.LastName.ToLower().Contains(search) ||
+                    s.StudentNumber.ToLower().Contains(search));
+            }
+
+            return View(students.ToList());
         }
 
         public IActionResult Create()
@@ -35,8 +43,18 @@ namespace StudentManagementSystem.Controllers
             return View();
         }
         [HttpPost]
+        [HttpPost]
         public IActionResult Create(Student student)
         {
+            bool exists = _context.Students.Any(s =>
+                s.StudentNumber == student.StudentNumber);
+
+            if (exists)
+            {
+                ModelState.AddModelError("StudentNumber",
+                    "This student number already exists.");
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Students.Add(student);
@@ -57,8 +75,19 @@ namespace StudentManagementSystem.Controllers
             return View(student);
         }
         [HttpPost]
+        [HttpPost]
         public IActionResult Edit(Student student)
         {
+            bool exists = _context.Students.Any(s =>
+                s.StudentNumber == student.StudentNumber &&
+                s.StudentId != student.StudentId);
+
+            if (exists)
+            {
+                ModelState.AddModelError("StudentNumber",
+                    "This student number already exists.");
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Students.Update(student);

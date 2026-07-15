@@ -11,6 +11,19 @@
         Add New Student
     </a>
 </p>
+<form method="get" class="mb-3">
+
+    <div class="input-group">
+
+        <input type="text" name="search" class="form-control" placeholder="Search students..." />
+
+        <button class="btn btn-primary">
+            Search
+        </button>
+
+    </div>
+
+</form>
 
 <table class="table table-bordered table-striped">
     <thead class="table-dark">
@@ -38,7 +51,14 @@
                     <td>@student.Email</td>
                     <td>@student.DateOfBirth.ToShortDateString()</td>
                     <td>
-                        @(student.IsActive ? "Active" : "Inactive")
+                        @if (student.IsActive)
+                        {
+                            <span class="badge bg-success">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Inactive</span>
+                        }
                     </td>
 
                     <td>
