@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using StudentManagementSystem.Data;
@@ -10,6 +11,7 @@ using StudentManagementSystem.Models;
 
 namespace StudentManagementSystem.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class StudentController : Controller
     {
         //variable that allows us to access the database context

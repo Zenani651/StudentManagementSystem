@@ -1,0 +1,78 @@
+```cshtml
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-4">
+
+    <div class="text-center mb-4">
+        <h2>Admin Dashboard</h2>
+        <p class="text-muted">Student Management System Overview</p>
+    </div>
+
+    <div class="row">
+
+        <!-- Students -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-center border-primary shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Students</h5>
+                    <h2 class="text-primary">@ViewBag.StudentCount</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lecturers -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-center border-success shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Lecturers</h5>
+                    <h2 class="text-success">@ViewBag.LecturerCount</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Departments -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-center border-warning shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Departments</h5>
+                    <h2 class="text-warning">@ViewBag.DepartmentCount</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Courses -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-center border-info shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Courses</h5>
+                    <h2 class="text-info">@ViewBag.CourseCount</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enrollments -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-center border-danger shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Enrollments</h5>
+                    <h2 class="text-danger">@ViewBag.EnrollmentCount</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Students -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-center border-dark shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Active Students</h5>
+                    <h2 class="text-dark">@ViewBag.ActiveStudents</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+```

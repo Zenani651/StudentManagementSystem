@@ -1,0 +1,56 @@
+@model IEnumerable<StudentManagementSystem.Models.Department>
+
+<h2>Departments</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        Add Department
+    </a>
+</p>
+
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+        <tr>
+            <th>Department Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @if (Model.Any())
+        {
+            @foreach (var department in Model)
+            {
+                <tr>
+
+                    <td>@department.DepartmentName</td>
+
+                    <td>
+
+                        <a asp-action="Edit" asp-route-id="@department.DepartmentId" class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete" asp-route-id="@department.DepartmentId" class="btn btn-danger btn-sm">
+                            Delete
+                        </a>
+
+                    </td>
+
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="2" class="text-center">
+                    No departments found.
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

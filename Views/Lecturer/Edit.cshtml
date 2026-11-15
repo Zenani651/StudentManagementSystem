@@ -1,0 +1,39 @@
+@model StudentManagementSystem.Models.Lecturer
+
+@{
+    ViewData["Title"] = "Edit Lecturer";
+}
+
+<h2>Edit Lecturer</h2>
+
+<form asp-action="Edit">
+
+    <input type="hidden" asp-for="LecturerId" />
+
+    <div class="mb-3">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-warning">
+        Update
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>
